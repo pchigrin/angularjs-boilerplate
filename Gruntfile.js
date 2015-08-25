@@ -11,6 +11,17 @@ module.exports = function(grunt) {
             sass: ['<%= project.app %>/sass']
         },
 
+        connect: {
+            server: {
+                options: {
+                    port: 8000,
+                    hostname: '*',
+                    onCreateServer: function (server, connect, options) {
+                    }
+                }
+            }
+        },
+
         sass: {
             dev: {
                 options: {
@@ -33,8 +44,10 @@ module.exports = function(grunt) {
 	
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-connect');
 
     grunt.registerTask('default', [
+        'connect',
         'watch'
     ]);
 

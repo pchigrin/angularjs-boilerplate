@@ -1,15 +1,21 @@
+# Cbm fast start AngularJS application
 
-====
+## Prerequisites
 
-How to Deploy
+### Node.js
 
-====
+You must have node.js and its package manager (npm) installed.
+- You can get them from [Node.js](http://nodejs.org/download/).
+- Install
 
-After checkout, please run this command in the project root:
+## Run the Application
 
-install npm (node.js) if not instlled
+All you need to install dependencies and run simple development web server is:
 
-> npm -g install grunt-cli bower (to install grunt and bower globaly)
-> npm install
-> bower install
-> grunt (to compile your sass files as you update them in src\sass)
+```
+npm start
+```
+
+Now browse to the app at `http://localhost:8000`.
+
+If sass/style.scss file changes css/style.css will be recompilled.
