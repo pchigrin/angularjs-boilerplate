@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cbmApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="app/css/style.css">
+</head>
+
+<body>
+    <ul class="nav nav-tabs" ng-controller="MenuController as menuCtrl">
+        <li ng-class="{active:menuCtrl.isSelected('home')}"><a href="#/home" ng-click="menuCtrl.setTab('home')">Home</a></li>
+        <li ng-class="{active:menuCtrl.isSelected('user')}"><a href="#/user" ng-click="menuCtrl.setTab('user')">Users</a></li>
+        <li ng-class="{active:menuCtrl.isSelected('project')}"><a href="#/project" ng-click="menuCtrl.setTab('project')">Projects</a></li>
+    </ul>
+    
+    <div ng-view></div>
+
+    <script type="text/javascript" src="vendor/angular/angular.js"></script>
+    <script type="text/javascript" src="vendor/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="app/js/app.js"></script>
+    <script type="text/javascript" src="app/js/routes.js"></script>
+    <script type="text/javascript" src="app/js/controllers/homeControllers.js"></script>
+    <script type="text/javascript" src="app/js/controllers/userControllers.js"></script>
+    <script type="text/javascript" src="app/js/controllers/projectControllers.js"></script>
+</body>
+</html>
+

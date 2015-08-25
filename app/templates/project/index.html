@@ -1,0 +1,26 @@
+<div class="page-header">
+    <h1>Project <small>index</small></h1>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>List</h4>
+
+            <div class="list-group">
+                <a href="#" class="list-group-item" ng-repeat="project in indexCtrl.projects" ng-class="{active:indexCtrl.isSelected(project.id)}" ng-click="indexCtrl.setProjectId(project.id)">{{project.name}}</a>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h4>Info</h4>
+            
+            <div ng-show="indexCtrl.isSelected()" class="alert alert-warning">Select project first</div>
+            
+            <div ng-show="indexCtrl.getSelected()">
+                <p>ID: <span class="badge">{{indexCtrl.getSelected().id}}</span></p>
+                <p>Info: {{indexCtrl.getSelected().info}}</p>
+            </div>
+        </div>
+    </div>
+</div>
