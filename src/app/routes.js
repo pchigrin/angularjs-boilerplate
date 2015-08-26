@@ -1,6 +1,3 @@
-(function () {
-'use strict';
-
 angular.module('cbmApp').config(['$routeProvider', function ($routeProvider) {
     $routeProvider
     .when('/', {
@@ -9,32 +6,30 @@ angular.module('cbmApp').config(['$routeProvider', function ($routeProvider) {
 
     .when('/home', {
         title: 'home',
-        templateUrl: 'app/templates/home/index.html',
+        templateUrl: 'templates/home/index.tpl.html',
         controller: 'HomeIndexController'
     })
 
     .when('/user', {
         title: 'user',
-        templateUrl: 'app/templates/user/index.html',
+        templateUrl: 'templates/user/index.tpl.html',
         controller: 'UserIndexController',
         controllerAs: 'indexCtrl'
     })
 
     .when('/user/:id', {
         title: 'user',
-        templateUrl: 'app/templates/user/show.html',
+        templateUrl: 'templates/user/show.tpl.html',
         controller: 'UserShowController',
         controllerAs: 'showCtrl'
     })
 
     .when('/project', {
         title: 'project',
-        templateUrl: 'app/templates/project/index.html',
+        templateUrl: 'templates/project/index.tpl.html',
         controller: 'ProjectIndexController',
         controllerAs: 'indexCtrl'
     })
 
     .otherwise({redirectTo: '/'});
 }]);
-
-})();

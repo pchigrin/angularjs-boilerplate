@@ -1,11 +1,10 @@
-(function() {
-'use strict';
-
 angular.module('cbmApp', [
     'ngRoute',
     'homeControllers',
     'userControllers',
-    'projectControllers'
+    'projectControllers',
+    'templates-app',
+    'templates-common'
 ])
 .controller('MenuController', function($rootScope) {
     var controller = this;
@@ -34,5 +33,3 @@ angular.module('cbmApp', [
         }
    };
 });
-
-})();

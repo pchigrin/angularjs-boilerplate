@@ -1,6 +1,6 @@
 {
-  "name": "cbm-angular-faststart",
-  "version": "1.0.0",
+  "name": "choobs-angular-faststart",
+  "version": "0.0.1",
   "authors": [
     "Pavel Chigrin <pchigrin@gmail.com>"
   ],
@@ -9,6 +9,9 @@
     "**/.*",
     "node_modules",
     "bower_components",
+	"vendor",
+	"bin",
+	"build",
     "test",
     "tests"
   ],
