@@ -191,8 +191,7 @@ module.exports = function(grunt) {
                     '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.sass %>'
                 },
                 options: {
-                    style: 'expanded',
-                    compass: false
+                    outputStyle: 'expanded'
                 }
             },
             compile: {
@@ -200,10 +199,7 @@ module.exports = function(grunt) {
                     '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.sass %>'
                 },
                 options: {
-//                    cleancss: true,
-//                    compress: true
-                    style: 'expanded',
-                    compass: false
+                    outputStyle: 'compressed'
                 }
             }
         },
