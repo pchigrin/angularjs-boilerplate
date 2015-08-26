@@ -1,4 +1,4 @@
-# Choobs fast start AngularJS application
+# Choobs AngularJS boilerplate application
 
 ## Prerequisites
 
@@ -47,3 +47,8 @@ grunt prod
 ```
 
 As previously it will be available at `http://localhost:8000`.
+
+
+## License
+
+Choobs AngularJS boilerplate application is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)

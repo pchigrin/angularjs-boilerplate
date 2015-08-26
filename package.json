@@ -1,10 +1,17 @@
 {
-  "name": "choobs-angular-faststart",
+  "name": "choobs-angularjs-boilerplate",
   "version": "0.0.1",
   "private": true,
-  "description": "Choobs fast start AngularJS application",
+  "description": "Choobs AngularJS boilerplate application",
   "author": "Pavel Chigrin <pchigrin@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:pchigrin/angularjs-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pchigrin/angularjs-boilerplate/issues"
+  },
   "devDependencies": {
     "bower": "^1.5.1",
     "grunt": "^0.4.5",
