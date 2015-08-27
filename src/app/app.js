@@ -18,6 +18,7 @@ angular.module('cbmApp', [
     };
     
     $rootScope.$on("$routeChangeSuccess", function(event, currentRoute, previousRoute) {
+        $rootScope.pageTitle = currentRoute.title;
         controller.setTab(currentRoute.title);
     });
 })

@@ -1,4 +1,4 @@
-angular.module('cbmApp').config(['$routeProvider', function ($routeProvider) {
+angular.module('cbmApp').config(function ($routeProvider) {
     $routeProvider
     .when('/', {
         redirectTo: '/home'
@@ -32,4 +32,4 @@ angular.module('cbmApp').config(['$routeProvider', function ($routeProvider) {
     })
 
     .otherwise({redirectTo: '/'});
-}]);
+});

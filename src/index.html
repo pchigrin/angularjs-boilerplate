@@ -4,16 +4,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    
+    <title>{{ pageTitle | uppercase }}</title>
+
     <!-- compiled CSS --><!--<% styles.forEach( function ( file ) { %>-->
     <link rel="stylesheet" type="text/css" href="<!--<%= file %>-->" /><!--<% }); %>-->
 </head>
 
 <body>
     <ul class="nav nav-tabs" ng-controller="MenuController as menuCtrl">
-        <li ng-class="{active:menuCtrl.isSelected('home')}"><a href="#/home" ng-click="menuCtrl.setTab('home')">Home</a></li>
-        <li ng-class="{active:menuCtrl.isSelected('user')}"><a href="#/user" ng-click="menuCtrl.setTab('user')">Users</a></li>
-        <li ng-class="{active:menuCtrl.isSelected('project')}"><a href="#/project" ng-click="menuCtrl.setTab('project')">Projects</a></li>
+        <li ng-class="{active:menuCtrl.isSelected('home')}"><a href="#/home">Home</a></li>
+        <li ng-class="{active:menuCtrl.isSelected('user')}"><a href="#/user">Users</a></li>
+        <li ng-class="{active:menuCtrl.isSelected('project')}"><a href="#/project">Projects</a></li>
     </ul>
     
     <div ng-view></div>
