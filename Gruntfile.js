@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+	grunt.template.addDelimiters('htmlSafeDelimiters', '<!--<%', '%>-->');
 
     /** 
      * Load required Grunt tasks. These are installed based on the versions listed
@@ -471,6 +472,7 @@ module.exports = function(grunt) {
         grunt.file.copy('src/index.html', this.data.dir + '/index.html', {
             process: function (contents, path) {
                 return grunt.template.process(contents, {
+					delimiters: 'htmlSafeDelimiters',
                     data: {
 						env: env,
                         scripts: jsFiles,
