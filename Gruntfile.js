@@ -63,7 +63,7 @@ module.exports = function(grunt) {
         copy: {
             build_app_assets: {
                 files: [{
-                    src: ['**'],
+                    src: ['**', '!README.md'],
                     dest: '<%= build_dir %>/assets/',
                     cwd: 'src/assets',
                     expand: true

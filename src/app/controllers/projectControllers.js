@@ -1,8 +1,8 @@
-var projects = [{id: 1, name: 'project A', info: 'project A info'}, {id: 2, name: 'project B', info: 'project B info'}];
-
-angular.module('projectControllers', [])
-.controller('ProjectIndexController', function() {
-    this.projects = projects;
+angular.module('choobsApp.project.controllers', [
+    'choobsApp.project.factories'
+])
+.controller('ProjectIndexController', function(ProjectFactory) {
+    this.projects = ProjectFactory.getProjects();
     this.projectId = undefined;
     
     this.setProjectId = function(projectId) {

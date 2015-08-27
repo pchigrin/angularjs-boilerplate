@@ -1,10 +1,10 @@
-var users = [{id: 1, name: 'user A', info: 'user A info'}, {id: 2, name: 'user B', info: 'user B info'}];
-
-angular.module('userControllers', [])
-.controller('UserIndexController', function () {
-    this.users = users;
+angular.module('choobsApp.user.controllers', [
+    'choobsApp.user.factories'
+])
+.controller('UserIndexController', function (UserFactory) {
+    this.users = UserFactory.getUsers();
 })
-.controller('UserShowController', function ($routeParams) {
+.controller('UserShowController', function ($routeParams, UserFactory) {
     this.id = $routeParams.id;
-    this.info = users[this.id - 1].info;
+    this.info = UserFactory.getUsers()[this.id - 1].info;
 });

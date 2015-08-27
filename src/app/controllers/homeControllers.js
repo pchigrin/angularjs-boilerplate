@@ -1,3 +1,3 @@
-angular.module('homeControllers', [])
+angular.module('choobsApp.home.controllers', [])
 .controller('HomeIndexController', function() {
 });

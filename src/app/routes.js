@@ -1,4 +1,7 @@
-angular.module('cbmApp').config(function ($routeProvider) {
+angular.module('choobsApp.routes', [
+    'ngRoute'
+])
+.config(function($routeProvider) {
     $routeProvider
     .when('/', {
         redirectTo: '/home'

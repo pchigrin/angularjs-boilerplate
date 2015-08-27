@@ -48,7 +48,9 @@ module.exports = {
     vendor_files: {
         js: [
             'vendor/angular/angular.js',
-            'vendor/angular-route/angular-route.js'
+            'vendor/angular-route/angular-route.js',
+			'vendor/jquery/dist/jquery.js',
+			'vendor/bootstrap-sass/assets/javascripts/bootstrap.js'
         ],
         css: [
         ],

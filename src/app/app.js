@@ -1,10 +1,10 @@
-angular.module('cbmApp', [
-    'ngRoute',
-    'homeControllers',
-    'userControllers',
-    'projectControllers',
+angular.module('choobsApp', [
     'templates-app',
-    'templates-common'
+    'templates-common',
+    'choobsApp.routes',
+    'choobsApp.home.controllers',
+    'choobsApp.user.controllers',
+    'choobsApp.project.controllers'
 ])
 .controller('MenuController', function($rootScope) {
     var controller = this;
@@ -17,7 +17,7 @@ angular.module('cbmApp', [
         return this.tab === tab;
     };
     
-    $rootScope.$on("$routeChangeSuccess", function(event, currentRoute, previousRoute) {
+    $rootScope.$on('$routeChangeSuccess', function(event, currentRoute, previousRoute) {
         $rootScope.pageTitle = currentRoute.title;
         controller.setTab(currentRoute.title);
     });
