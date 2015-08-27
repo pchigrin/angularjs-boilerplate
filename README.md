@@ -8,6 +8,14 @@ You must have node.js and its package manager (npm) installed.
 - You can get them from [Node.js](http://nodejs.org/download/).
 - Install
 
+### Grunt
+
+To run project's task from IDE (i.e. NetBeans) it is better to have Grung installed globaly:
+
+```
+npm install -g grunt-cli
+```
+
 ## Run the Application
 
 All you need to install dependencies and run simple development web server is:

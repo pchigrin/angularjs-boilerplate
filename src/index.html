@@ -20,6 +20,11 @@
 
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
+    
+    <% if (env === 'dev') { %>
+    <!-- live reload script only for dev environment -->
+    <script src="http://localhost:35729/livereload.js"></script>
+    <% }; %>
 </body>
 </html>
 
