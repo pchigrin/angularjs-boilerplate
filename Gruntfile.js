@@ -102,6 +102,16 @@ module.exports = function(grunt) {
                     expand: true
                 }]
             },
+            build_vendorfonts: {
+                files: [{
+                    src: ['<%= vendor_files.fonts %>'],
+                    dest: '<%= build_dir %>/assets/fonts',
+                    cwd: '.',
+                    expand: true,
+                    flatten: true,
+                    filter: 'isFile'
+                }]
+            },
             compile_assets: {
                 files: [{
                     src: ['**'],
@@ -192,6 +202,7 @@ module.exports = function(grunt) {
                     '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.sass %>'
                 },
                 options: {
+					precision: 8,
                     outputStyle: 'expanded'
                 }
             },
@@ -200,6 +211,7 @@ module.exports = function(grunt) {
                     '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.sass %>'
                 },
                 options: {
+					precision: 8,
                     outputStyle: 'compressed'
                 }
             }
@@ -404,7 +416,7 @@ module.exports = function(grunt) {
      */
     grunt.registerTask('build', [
       'clean', 'html2js', 'jshint', 'sass:build', 'concat:build_css',
-      'copy:build_app_assets', 'copy:build_vendor_assets', 'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss',
+      'copy:build_app_assets', 'copy:build_vendor_assets', 'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss', 'copy:build_vendorfonts',
       'index:build'
     ]);
 
@@ -467,14 +479,14 @@ module.exports = function(grunt) {
         var cssFiles = filterForCSS(this.filesSrc).map(function (file) {
             return file.replace(dirRE, '');
         });
-		var env = this.target === 'build' ? 'dev' : 'prod';
+        var env = this.target === 'build' ? 'dev' : 'prod';
 
         grunt.file.copy('src/index.html', this.data.dir + '/index.html', {
             process: function (contents, path) {
-                return grunt.template.process(contents, {
-					delimiters: 'htmlSafeDelimiters',
+                    return grunt.template.process(contents, {
+                    delimiters: 'htmlSafeDelimiters',
                     data: {
-						env: env,
+                        env: env,
                         scripts: jsFiles,
                         styles: cssFiles,
                         version: grunt.config('pkg.version')

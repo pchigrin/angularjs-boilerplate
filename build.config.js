@@ -49,12 +49,19 @@ module.exports = {
         js: [
             'vendor/angular/angular.js',
             'vendor/angular-route/angular-route.js',
-			'vendor/jquery/dist/jquery.js',
-			'vendor/bootstrap-sass/assets/javascripts/bootstrap.js'
+            'vendor/jquery/dist/jquery.js',
+            'vendor/bootstrap-sass/assets/javascripts/bootstrap.js'
         ],
         css: [
         ],
         assets: [
+        ],
+        fonts: [
+            'vendor/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.eot',
+            'vendor/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.svg',
+            'vendor/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.ttf',
+            'vendor/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.woff',
+            'vendor/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.woff2'
         ]
     }
 };
