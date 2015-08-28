@@ -9,16 +9,19 @@
     "**/.*",
     "node_modules",
     "bower_components",
-	"vendor",
-	"bin",
-	"build",
+    "vendor",
+    "bin",
+    "build",
     "test",
     "tests"
   ],
   "private": true,
+  "devDependencies": {
+    "angular": "~1.4.4",
+    "angular-route": "~1.4.4",
+    "bootstrap-sass": "~3.3.5",
+    "angular-bootstrap": "~0.13.3"
+  },
   "dependencies": {
-    "angular": "1.4.4",
-    "angular-route": "1.4.4",
-    "bootstrap-sass": "3.3.5"
   }
 }

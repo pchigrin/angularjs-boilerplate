@@ -1,25 +1,44 @@
 angular.module('choobsApp', [
     'templates-app',
     'templates-common',
-    'choobsApp.routes',
-    'choobsApp.home.controllers',
-    'choobsApp.user.controllers',
-    'choobsApp.project.controllers'
+    'ui.bootstrap',
+    'choobsApp.home',
+    'choobsApp.user',
+    'choobsApp.project',
+    'ngRoute'
 ])
-.controller('MenuController', function($rootScope) {
-    var controller = this;
+.config(function($routeProvider) {
+    $routeProvider
+    .when('/', {
+        redirectTo: '/home'
+    })
+    .otherwise({redirectTo: '/'});
+})
+.factory('TabFactory', function() {
+    var factory = {},
+        tabs = [{
+            title: 'Home', icon: 'home', href: 'home'
+        }, {
+            title: 'Users', icon: 'user', href: 'user'
+        }, {
+            title: 'Projects', icon: 'book', href: 'project'
+        }];
     
-    this.setTab = function(tab) {
-        this.tab = tab;
+    factory.getTabs = function() {
+        return tabs;
     };
     
-    this.isSelected = function(tab) {
-        return this.tab === tab;
+    return factory;
+})
+.controller('TabController', function($scope, $rootScope, TabFactory) {
+    $scope.getTabs = function() {
+        return TabFactory.getTabs();
     };
     
     $rootScope.$on('$routeChangeSuccess', function(event, currentRoute, previousRoute) {
         $rootScope.pageTitle = currentRoute.title;
-        controller.setTab(currentRoute.title);
+        $scope.activeTab = {}; //reset
+        $scope.activeTab[currentRoute.title] = true;
     });
 })
 .directive('a', function() {

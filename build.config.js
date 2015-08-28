@@ -49,8 +49,7 @@ module.exports = {
         js: [
             'vendor/angular/angular.js',
             'vendor/angular-route/angular-route.js',
-            'vendor/jquery/dist/jquery.js',
-            'vendor/bootstrap-sass/assets/javascripts/bootstrap.js'
+            'vendor/angular-bootstrap/ui-bootstrap-tpls.js'
         ],
         css: [
         ],
