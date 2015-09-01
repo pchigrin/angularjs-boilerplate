@@ -9,7 +9,10 @@ angular.module('choobsApp.home', [
         controller: 'HomeIndexController'
     });
 })
-.controller('HomeIndexController', function($scope) {
+.controller('HomeIndexController', function($scope, notificationsFactory) {
+    $scope.sendNotification = function(){
+        notificationsFactory.pushForCurrentRoute('Error notification');
+    };
     $scope.tooltipName = 'tooltip';
     $scope.tooltipText = 'Hello, World!';
 });

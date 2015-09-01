@@ -5,6 +5,8 @@ angular.module('choobsApp', [
     'choobsApp.home',
     'choobsApp.user',
     'choobsApp.project',
+    'services.breadcrumbs',
+    'notifications',
     'ngRoute'
 ])
 .config(function($routeProvider) {
@@ -30,15 +32,24 @@ angular.module('choobsApp', [
     
     return factory;
 })
-.controller('TabController', function($scope, $rootScope, TabFactory) {
+.controller('TitleController', function($scope) {
+    $scope.$on('$routeChangeSuccess', function(event, current, previous) {
+        $scope.title = current.title;
+    });
+})
+.controller('BreadcrumbController', function($scope, breadcrumbs) {
+    $scope.breadcrumbs = breadcrumbs;
+})
+.controller('TabController', function($scope, TabFactory, notificationsFactory) {
     $scope.getTabs = function() {
         return TabFactory.getTabs();
     };
     
-    $rootScope.$on('$routeChangeSuccess', function(event, currentRoute, previousRoute) {
-        $rootScope.pageTitle = currentRoute.title;
+    $scope.$on('$routeChangeSuccess', function(event, current, previous) {
         $scope.activeTab = {}; //reset
-        $scope.activeTab[currentRoute.title] = true;
+        $scope.activeTab[current.title] = true;
+        notificationsFactory.pushForCurrentRoute('Current route: '+ current.title, 'success');
+        notificationsFactory.pushForNextRoute('Previous route: '+ current.title, 'success');
     });
 })
 .directive('a', function() {

@@ -1,0 +1,6 @@
+<div class="container-fluid" ng-show="notifications.getCurrent().length" ng-controller="NotificationsController">
+    <div ng-class="['alert', 'alert-'+notification.type]" ng-repeat="notification in notifications.getCurrent()">
+        <button type="button" class="close" ng-click="removeNotification(notification)">&times;</button>
+        {{notification.message}}
+    </div>
+</div>

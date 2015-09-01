@@ -1,2 +1,14 @@
-$icon-font-path: '../assets/fonts/';
+$icon-font-path: 'fonts/';
 @import 'vendor/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+
+
+// temporary solution, will be fixed in bootstrap-sass library soon
+.breadcrumb {
+  > li {
+    + li:before {
+      // [converter] Workaround for https://github.com/sass/libsass/issues/1115
+      $nbsp: "\00a0";
+      content: "#{$breadcrumb-separator}#{$nbsp}"; // Unicode space added since inline-block means non-collapsing white-space
+    }
+  }
+}
