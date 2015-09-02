@@ -17,11 +17,11 @@
   ],
   "private": true,
   "devDependencies": {
-    "angular": "~1.4.4",
-    "angular-route": "~1.4.4",
-    "bootstrap-sass": "~3.3.5",
-    "angular-bootstrap": "~0.13.3"
+    "angular": "~1.4.5",
+    "angular-bootstrap": "~0.13.3",
+    "angular-mocks": "~1.4.5",
+    "angular-route": "~1.4.5",
+    "bootstrap-sass": "~3.3.5"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

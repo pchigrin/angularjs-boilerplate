@@ -13,6 +13,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-ng-annotate');
+    grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-html2js');
     grunt.loadNpmTasks('grunt-contrib-jshint');
 
@@ -229,6 +230,9 @@ module.exports = function(grunt) {
             src: [
                 '<%= app_files.js %>'
             ],
+            test: [
+                '<%= app_files.jsunit %>'
+            ],
             gruntfile: [
                 'Gruntfile.js'
             ],
@@ -270,6 +274,38 @@ module.exports = function(grunt) {
                 },
                 src: ['<%= app_files.ctpl %>'],
                 dest: '<%= build_dir %>/templates-common.js'
+            }
+        },
+
+        /**
+         * The Karma configurations.
+         */
+        karma: {
+            options: {
+                configFile: '<%= build_dir %>/karma-unit.js'
+            },
+            unit: {
+                port: 9019,
+                background: true
+            },
+            continuous: {
+                singleRun: true
+            }
+        },
+
+        /**
+         * This task compiles the karma template so that changes to its file array
+         * don't have to be managed manually.
+         */
+        karmaconfig: {
+            unit: {
+                dir: '<%= build_dir %>',
+                src: [
+                    '<%= vendor_files.js %>',
+                    '<%= html2js.app.dest %>',
+                    '<%= html2js.common.dest %>',
+                    '<%= test_files.js %>'
+                ]
             }
         },
 
@@ -347,7 +383,7 @@ module.exports = function(grunt) {
                 files: [
                     '<%= app_files.js %>'
                 ],
-                tasks: ['jshint:src', 'copy:build_appjs']
+                tasks: ['jshint:src', 'karma:unit:run', 'copy:build_appjs']
             },
             /**
              * When assets are changed, copy them. Note that this will *not* copy new
@@ -382,6 +418,19 @@ module.exports = function(grunt) {
             sass: {
                 files: ['src/**/*.{scss,sass}'],
                 tasks: ['sass:build']
+            },
+            /**
+             * When a JavaScript unit test file changes, we only want to lint it and
+             * run the unit tests. We don't want to do any live reloading.
+             */
+            jsunit: {
+                files: [
+                    '<%= app_files.jsunit %>'
+                ],
+                tasks: ['jshint:test', 'karma:unit:run'],
+                options: {
+                    livereload: false
+                }
             }
         },
 
@@ -417,7 +466,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build', [
       'clean', 'html2js', 'jshint', 'sass:build', 'concat:build_css',
       'copy:build_app_assets', 'copy:build_vendor_assets', 'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss', 'copy:build_vendorfonts',
-      'index:build'
+      'index:build', 'karmaconfig', 'karma:continuous'
     ]);
 
     /**
@@ -439,7 +488,7 @@ module.exports = function(grunt) {
      * The `dev` task is to development. It builds sources, runs a web server
      * and watches for changes.
      */
-    grunt.registerTask('dev', ['build', 'connect:build', 'watch']);
+    grunt.registerTask('dev', ['build', 'karma:unit', 'connect:build', 'watch']);
 
     /**
      * The default task is to build sources, run a web server and watch for changes.
@@ -471,7 +520,7 @@ module.exports = function(grunt) {
      * the list into variables for the template to use and then runs the
      * compilation.
      */
-    grunt.registerMultiTask('index', 'Process index.html template', function () {
+    grunt.registerMultiTask('index', 'Process index.html template', function() {
         var dirRE = new RegExp('^(' + grunt.config('build_dir') + '|' + grunt.config('compile_dir') + ')\/', 'g');
         var jsFiles = filterForJS(this.filesSrc).map(function (file) {
             return file.replace(dirRE, '');
@@ -481,7 +530,7 @@ module.exports = function(grunt) {
         });
         var env = this.target === 'build' ? 'dev' : 'prod';
 
-        grunt.file.copy('src/index.html', this.data.dir + '/index.html', {
+        grunt.file.copy('src/index.html', this.data.dir +'/index.html', {
             process: function (contents, path) {
                     return grunt.template.process(contents, {
                     delimiters: 'htmlSafeDelimiters',
@@ -490,6 +539,25 @@ module.exports = function(grunt) {
                         scripts: jsFiles,
                         styles: cssFiles,
                         version: grunt.config('pkg.version')
+                    }
+                });
+            }
+        });
+    });
+    
+    /**
+     * In order to avoid having to specify manually the files needed for karma to
+     * run, we use grunt to manage the list for us. The `karma/*` files are
+     * compiled as grunt templates for use by Karma.
+     */
+    grunt.registerMultiTask('karmaconfig', 'Process karma config templates', function() {
+        var jsFiles = filterForJS(this.filesSrc);
+
+        grunt.file.copy('karma/karma-unit.tpl.js', grunt.config('build_dir') +'/karma-unit.js', {
+            process: function (contents, path) {
+                return grunt.template.process(contents, {
+                    data: {
+                        scripts: jsFiles
                     }
                 });
             }

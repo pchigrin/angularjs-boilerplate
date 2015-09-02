@@ -18,7 +18,8 @@ module.exports = {
      * main HTML file, `sass` is our main stylesheet.
      */
     app_files: {
-        js: ['src/**/*.js', '!src/assets/**/*.js'],
+        js: ['src/**/*.js', '!src/**/*.spec.js', '!src/assets/**/*.js'],
+        jsunit: ['src/**/*.spec.js'],
         
         atpl: ['src/app/**/*.tpl.html'],
         ctpl: ['src/common/**/*.tpl.html'],
@@ -26,7 +27,12 @@ module.exports = {
         html: ['src/index.html'],
         sass: 'src/sass/main.scss'
     },
-
+    /**
+     * This is a collection of files used during testing only.
+     */
+    test_files: {
+        js: ['vendor/angular-mocks/angular-mocks.js']
+    },
     /**
      * This is the same as `app_files`, except it contains patterns that
      * reference vendor code (`vendor/`) that we need to place into the build
