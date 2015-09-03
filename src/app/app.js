@@ -38,7 +38,6 @@ angular.module('choobsApp', [
     });
 })
 .controller('BreadcrumbController', function($scope, breadcrumbs) {
-    $scope.dummy = 'test';
     $scope.breadcrumbs = breadcrumbs;
 })
 .controller('TabController', function($scope, TabFactory, notificationsFactory) {

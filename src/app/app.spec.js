@@ -1,10 +1,7 @@
-describe('BreadcrumbController', function() {
+describe('choobsApp', function() {
     beforeEach(module('choobsApp'));
 
-    it('dummy test', inject(function ($controller) {
-        var scope = {},
-            controller = $controller('BreadcrumbController', {$scope:scope});
-            
-        expect(scope.dummy).toBe('test');
+    it('should have a dummy test', inject(function () {
+        expect(true).toBeTruthy();
     }));
 });
